@@ -8,10 +8,10 @@ async def get_chats(messages: list[str], client: Client):
 
 
 def format_chat_type(chat_type: str):
-    return 'лс' if chat_type == 'ChatType.PRIVATE' \
-        else 'группа' if chat_type == 'ChatType.GROUP' \
-        else 'супер-группа' if chat_type == 'ChatType.SUPERGROUP' \
-        else 'канал' if chat_type == 'ChatType.CHANNEL' \
+    return 'лс' if chat_type == ChatType.PRIVATE \
+        else 'группа' if chat_type == ChatType.GROUP \
+        else 'супер-группа' if chat_type == ChatType.SUPERGROUP \
+        else 'канал' if chat_type == ChatType.CHANNEL \
         else 'бот'
 
 
