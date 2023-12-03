@@ -1,6 +1,6 @@
 # Перед запуском
 
-- Авторизуйтесь на сайте (my.telegram.org)[https://my.telegram.org]
+- Авторизуйтесь на сайте [my.telegram.org](https://my.telegram.org)
 - Нажмите **API development tools**
 - Создание приложения:
     - В поле **App title** введите название (например, _chat parser_)
