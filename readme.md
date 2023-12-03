@@ -1,5 +1,7 @@
 # Перед запуском
 
+***Установите зависимости из файла `requierements.txt` с помощью `pip install -r requirements.txt` в консоли***
+
 - Авторизуйтесь на сайте [my.telegram.org](https://my.telegram.org)
 - Нажмите **API development tools**
 - Создание приложения:
