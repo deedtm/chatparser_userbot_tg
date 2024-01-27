@@ -36,20 +36,23 @@ async def find_handler(client: Client, msg: Message):
 
     keywords = msg.text.split()[1:]
     messages = await parse.search_messages(keywords, client)
-    await msg.edit_text(f"🤖 Парсинг был начат\n🕒 **~{format_seconds(len(messages) * 0.3)}**")
+    if len(messages) <= 1:
+        await msg.edit_text(f"🤖 Ничего не было найдено")
+    else:    
+        await msg.edit_text(f"🤖 Парсинг был начат\n🕒 **~{format_seconds(len(messages) * 0.3)}**")
 
-    async for chat_type, info in parse.message_info_generator(messages):
-        sheet = xls.get_sheet(chat_type)
-        xls.write(sheet, info)
+        async for chat_type, info in parse.message_info_generator(messages):
+            sheet = xls.get_sheet(chat_type)
+            xls.write(sheet, info)
 
-    await msg.delete()
-    future = time.time()
-    await client.send_document(
-        "me",
-        document="chats.xls",
-        caption=f'<pre language="Ключевые слова">{" ".join(keywords)}</pre>\n<i>{len(messages)} сообщений за {format_seconds(future - past)}\nкаждое сообщение ~{format_seconds((future - past) / len(messages))}</i>',
-        parse_mode=ParseMode.HTML,  
-    )
+        await msg.delete()
+        future = time.time()
+        await client.send_document(
+            "me",
+            document="chats.xls",
+            caption=f'<pre language="Ключевые слова">{" ".join(keywords)}</pre>\n<i>{len(messages)} сообщ. за {format_seconds(future - past)}\nкаждое сообщение ~{format_seconds((future - past) / len(messages))}</i>',
+            parse_mode=ParseMode.HTML,  
+        )
 
 
 if __name__ == "__main__":
