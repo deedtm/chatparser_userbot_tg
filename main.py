@@ -47,7 +47,7 @@ async def find_handler(client: Client, msg: Message):
     await client.send_document(
         "me",
         document="chats.xls",
-        caption=f'<pre language="Ключевые слова">{" ".join(keywords)}</pre>\n<i>{len(messages)} сообщений за {future - past:0.3f} сек.</i> (1 сообщение за {(future - past) / len(messages):0.3f} сек.)',
+        caption=f'<pre language="Ключевые слова">{" ".join(keywords)}</pre>\n<i>{len(messages)} сообщений за {format_seconds(future - past)}\nкаждое сообщение ~{format_seconds((future - past) / len(messages))}</i>',
         parse_mode=ParseMode.HTML,  
     )
 
