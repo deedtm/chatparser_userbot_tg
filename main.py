@@ -27,7 +27,7 @@ app = Client(
 )
 
 
-@app.on_message(filters.me & filters.regex("\.find .+"))
+@app.on_message(filters.me & filters.regex("\\.find .+"))
 async def find_handler(client: Client, msg: Message):
     past = time.time()
     if excel_file_name in os.listdir():
